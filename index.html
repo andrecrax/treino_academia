@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Treino</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen screen-active" id="startScreen" aria-labelledby="homeTitle">
+        <header class="home-header">
+          <div>
+            <p class="eyebrow" id="todayLabel"></p>
+            <h1 id="homeTitle">Meu treino</h1>
+          </div>
+          <div class="status-pill" id="weeklyStatus">A-D</div>
+        </header>
+
+        <div class="workout-grid" id="workoutChoices" aria-label="Escolha do treino"></div>
+      </section>
+
+      <section class="screen" id="workoutScreen" aria-labelledby="workoutTitle">
+        <header class="workout-header">
+          <button class="icon-button" id="backButton" type="button" aria-label="Voltar">
+            <span aria-hidden="true">←</span>
+          </button>
+
+          <div class="workout-heading">
+            <p class="eyebrow" id="workoutLabel"></p>
+            <h2 id="workoutTitle"></h2>
+          </div>
+
+          <button class="secondary-button" id="resetButton" type="button">Reiniciar</button>
+        </header>
+
+        <section class="progress-panel" aria-label="Progresso do treino">
+          <div class="progress-copy">
+            <strong id="progressText"></strong>
+            <span id="progressPercent"></span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-bar" id="progressBar"></div>
+          </div>
+        </section>
+
+        <section class="exercise-list" id="exerciseList" aria-label="Lista de exercícios"></section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

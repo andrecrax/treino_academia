@@ -1,0 +1,607 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f3ec;
+  --surface: #fffdfa;
+  --surface-strong: #ffffff;
+  --ink: #18212a;
+  --muted: #64717d;
+  --line: #d9ddd8;
+  --teal: #16736a;
+  --blue: #276fc2;
+  --coral: #d9544d;
+  --amber: #c88319;
+  --green: #2f7d42;
+  --shadow: 0 16px 38px rgba(31, 38, 45, 0.11);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgba(22, 115, 106, 0.1), transparent 280px),
+    linear-gradient(135deg, rgba(216, 84, 77, 0.08), transparent 42%),
+    var(--bg);
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.app-shell {
+  width: min(100% - 24px, 620px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: max(16px, env(safe-area-inset-top)) 0 max(28px, env(safe-area-inset-bottom));
+}
+
+.screen {
+  display: block;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.app-header,
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.app-header h1,
+.game-header h1,
+.end-panel h2 {
+  margin: 0;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.app-header h1 {
+  font-size: 2.45rem;
+}
+
+.game-header {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.turn-heading {
+  min-width: 0;
+}
+
+.turn-heading h1 {
+  font-size: 1.28rem;
+  overflow-wrap: anywhere;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.timer-badge {
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+}
+
+.setup-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.panel,
+.prompt-area,
+.scoring-panel,
+.end-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 250, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.panel {
+  padding: 16px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.section-heading h2,
+.scoring-panel h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+}
+
+.section-heading span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.field-group {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.field-label,
+.number-field span,
+.switch-field {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.difficulty-control {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.segmented-control label {
+  min-width: 0;
+}
+
+.segmented-control input,
+.switch-field input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.segmented-control span {
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  padding: 0 10px;
+  font-weight: 900;
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.segmented-control input:checked + span {
+  border-color: var(--teal);
+  background: #e6f4ef;
+  color: #0e5d56;
+}
+
+.segmented-control input:focus-visible + span,
+.switch-field input:focus-visible + .switch-track,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid rgba(39, 111, 194, 0.28);
+  outline-offset: 2px;
+}
+
+.number-field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.number-field input,
+.team-name-input {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  padding: 0 12px;
+  font-weight: 800;
+}
+
+.switch-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch-track {
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: #cfd7d3;
+  padding: 4px;
+  transition: background-color 160ms ease;
+}
+
+.switch-track span {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: block;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(24, 33, 42, 0.22);
+  transition: transform 160ms ease;
+}
+
+.switch-field input:checked + .switch-track {
+  background: var(--teal);
+}
+
+.switch-field input:checked + .switch-track span {
+  transform: translateX(22px);
+}
+
+.team-setup-list {
+  display: grid;
+}
+
+.team-setup-row {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  border-top: 1px solid var(--line);
+  padding: 10px 0;
+}
+
+.team-setup-row:first-child {
+  border-top: 0;
+}
+
+.color-chip {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--team-color);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.62);
+}
+
+.team-color-name {
+  min-width: 0;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.primary-action,
+.secondary-action,
+.success-action,
+.ghost-action,
+.icon-action {
+  min-height: 48px;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-weight: 900;
+  line-height: 1.1;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.primary-action {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(24, 33, 42, 0.2);
+}
+
+.secondary-action,
+.ghost-action,
+.icon-action {
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--ink);
+}
+
+.success-action {
+  background: var(--green);
+  color: #fff;
+  box-shadow: 0 12px 26px rgba(47, 125, 66, 0.22);
+}
+
+.icon-action {
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.55rem;
+}
+
+.primary-action:hover:not(:disabled),
+.secondary-action:hover:not(:disabled),
+.success-action:hover:not(:disabled),
+.ghost-action:hover:not(:disabled),
+.icon-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.full-action {
+  width: 100%;
+}
+
+.score-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.score-tile {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 12px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+}
+
+.score-tile.is-active {
+  border-color: var(--team-color);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--team-color) 24%, transparent);
+}
+
+.score-marker {
+  width: 12px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--team-color);
+}
+
+.score-name {
+  min-width: 0;
+  font-size: 0.88rem;
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.score-value {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.prompt-area {
+  min-height: 390px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.category-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.category-line span {
+  min-height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px;
+  background: #eef2ef;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.category-line span:first-child {
+  background: #e8f0ff;
+  color: var(--blue);
+}
+
+.word-stage {
+  flex: 1;
+  min-height: 162px;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(39, 111, 194, 0.12), transparent 48%),
+    linear-gradient(315deg, rgba(200, 131, 25, 0.13), transparent 46%),
+    #fbfbf6;
+  display: grid;
+  place-items: center;
+  padding: 18px 12px;
+  text-align: center;
+}
+
+.word-stage p {
+  margin: 0;
+  max-width: 100%;
+  font-size: 2.65rem;
+  line-height: 1.02;
+  font-weight: 950;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.timer-panel {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.timer-panel output {
+  color: var(--ink);
+  font-size: 3.25rem;
+  line-height: 0.95;
+  font-weight: 950;
+  font-variant-numeric: tabular-nums;
+}
+
+.turn-actions,
+.scoring-actions,
+.end-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.turn-actions button,
+.scoring-actions button,
+.end-actions button {
+  min-width: 0;
+  white-space: normal;
+}
+
+.scoring-panel,
+.end-panel {
+  margin-top: 12px;
+  padding: 16px;
+}
+
+.scoring-panel h2 {
+  margin-bottom: 12px;
+}
+
+.scoring-panel .full-action {
+  margin-top: 10px;
+}
+
+.ranking-list {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.ranking-row {
+  min-height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+}
+
+.ranking-position {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--team-color);
+  color: #fff;
+  font-weight: 900;
+}
+
+.ranking-name {
+  min-width: 0;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.ranking-score {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+@media (min-width: 560px) {
+  .app-shell {
+    padding-top: 28px;
+  }
+
+  .app-header h1 {
+    font-size: 3rem;
+  }
+
+  .setup-grid {
+    gap: 14px;
+  }
+
+  .score-strip {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .prompt-area {
+    min-height: 450px;
+    padding: 18px;
+  }
+
+  .word-stage p {
+    font-size: 3.4rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-shell {
+    width: min(100% - 16px, 620px);
+  }
+
+  .segmented-control,
+  .difficulty-control,
+  .turn-actions,
+  .scoring-actions,
+  .end-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .app-header h1 {
+    font-size: 2.1rem;
+  }
+
+  .word-stage p {
+    font-size: 2.2rem;
+  }
+}
